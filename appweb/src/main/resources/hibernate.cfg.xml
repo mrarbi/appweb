@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+     "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+    
+<hibernate-configuration>
+  <session-factory>
+    <!--  Paramètres de connexion à la base de données -->
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost/pge_jpa_v2</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password"></property>
+
+    <!-- Comportement pour la conservation des tables -->
+<!--     <property name="hbm2ddl.auto">create</property> -->
+
+    <!-- Fichiers à mapper -->
+    <mapping class="org.test.persistance.jpa.Event" />
+    <mapping class="org.test.persistance.jpa.Address" />
+    <mapping class="org.test.persistance.jpa.User" />
+    <mapping class="org.test.persistance.jpa.Item" />
+    <mapping class="org.test.persistance.jpa.Guest" />
+  
+
+  </session-factory>
+</hibernate-configuration>
