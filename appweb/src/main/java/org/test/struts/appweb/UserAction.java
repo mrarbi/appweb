@@ -20,14 +20,16 @@ public class UserAction {
 	public String execute() throws Exception {
 		
 		Session s = HibernateUtils.getSession();
-		
 		s.beginTransaction();
-		User u = new User(login, email, passwd);
-		s.save(u);
-		s.getTransaction().commit();
+		
 		Query q = s.createQuery("from User where login = :login");
 		q.setParameter("login", login);
-		u = (User) q.setMaxResults(1).uniqueResult();
+		User u = (User) q.setMaxResults(1).uniqueResult();
+		if(null == u){
+			u = new User(login, email, passwd);
+		}
+		s.saveOrUpdate(u);
+		s.getTransaction().commit();
 		
 		login = null != u ? u.getLogin() : "none";
 		// Fermeture de la session Hibernate
